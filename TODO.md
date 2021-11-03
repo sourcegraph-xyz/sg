@@ -1,109 +1,30 @@
 # TODO 
 
-## Overview 
-These are TODO items for the generic Tandem library 
+In Order: 
 
-## Table of Contents 
-- [Tasks](#todo)
-- [Backlog](#backlog)
-- [Known Unknowns](#known-unknowns)      
-- [Completed](#completed)
+Basics: [Get something coded you're prepared to throw away]
+- [ ] Workspace + 1 View: Allow read/write on a single scope.
+- [ ] List Scopes: Show existing scopes. 
+- [ ] Workspace + N Views: Allow read/write on multiple scopes. 
+- [ ] Create Default Transformations + Actions
+    - [ ] Read Transformations: References
 
-Organization: 
-- [ ] Move TODOs to their given components 
+Thar be meta: [This part of the TODO is absolutely going to explode but I want something down]
+- [ ] Create default `GenesisText` Type. 
+- [ ] Make mock scopes of type `GenesisText`. 
+- [ ] Create new `Type`-typed Scope, which extends `GenesisText`. 
+- [ ] Create new `Type`-typed Scope for `Transformation`. 
+- [ ] Define default transformations as scopes of `Transformation`-type. 
+- [ ] Define new scope of type `Type` called `Text` which extends `GenesisText` and overrides its transformations using newly defaults `Transformations`. 
+- [ ] Define new scope of type `Type` called `Action`. 
+- [ ] Define default actions as scopes of `Action`-type. 
+- [ ] Define new scope of type `Type` called `View` which is linked to type `Text` and maps each `Transformation` to an `Action`. 
+- [ ] Allow workspace to utilize any user-defined `View`. When opening a scope of `Type` X open it using `View` type of choice. [Cannot currently think of a feasible way to make `Workspace` a `Type`, `View` is already a bit difficult to imagine.] 
+- [ ] Add Device types -- make `Action` and `Device` device-specific. [Also not sure how to do that]
 
-Architecture: 
-- [ ] Where to apply transformations? How to represent? 
-    - Would like some kind of function-db where functions are dumbly applied to objects
-- [ ] Representing Transformations, Actions, and UI as graph-doc 
+Notes: 
+- A timeline can be pictured as a View on another View's document. 
+- Could all the buttons of the UIs be defined as transformations and views? 
+- Could `Workspace` be a type? 
 
-K8s/Deployment: 
-- [ ] Append `staging.grouphouse.io` with credential username 
-- [ ] Investigate unclean docker containers/images -- how to keep things clean? 
-- [ ] Investigate Kustomize and migrate if preferred to Helm 
-- [ ] Envoy (https://www.envoyproxy.io/)
-- [ ] Per-commit automated deployments 
-
-Ingress: 
-- [ ] Deploy https://kubernetes.github.io/ingress-nginx/deploy/#aws in-code 
-- [ ] 404 on unknown endpoints 
-
-Web-Frontend: 
-- [ ] Add jest tests to all typescript packages 
-- [ ] `node-frontend` uses npm rather than yarn, would be nice to keep things consistent
-
-Public-API: 
-- [ ] Retry establishing API-Store connection, or delay slightly 
-- [ ] Health endpoint (https://blog.gopheracademy.com/advent-2017/kubernetes-ready-service/)
-- [ ] Graceful shutdown (https://blog.gopheracademy.com/advent-2017/kubernetes-ready-service/)
-- [ ] Request JSON-to-Struct Mapping
-- [ ] Authz 
-    - [ ] Auth library (Use Auth0)
-    - [ ] Require token with all requests + API calls 
-    - [ ] Session object 
-- [ ] Backend Go Linter
-- [ ] Pagination pattern
-- [ ] Jaegar spanner
-- [ ] API Service Test Pattern
-- [ ] API Service Error Handling 
-- [ ] API Service Logging
-- [ ] Role:Capabilities:Endpoints Model? (i.e. a single capability can map to many endpoints) 
-
-API-Store: 
-- [ ] Simply yaml setup, probably should make as independent from k8s as possible. 
-- [ ] Figure out why persistent volume and persistent volume claim are sometimes not created on `tilt up`.
-
-Other: 
-- [ ] Clean up READMEs 
-
-## Backlog
-- [ ] Migrate command
-- [ ] Per-Request DB Connection Instantiation
-- [ ] Feature-flagging -- what's the proper level? 
-
-## Future Backlog 
-- [ ] Redis: Map session id to cached chunks 
-
-## Known Unknowns
-
-## Completed
-From most recent to oldest.
-- [x] Move client out to typescript library 
-- [x] Separate Development and Staging 
-- [x] Connection/ConnectionFactory interface [Opted for: shared controller has multiple handlers, controller type is specific to data store combo]
-- [x] Tilt: Convert to using DNS names -- finally connected the web-frontend 
-        and public-api by opening public-api -- need to make it private 
-- [x] Testing Public Zone for frontend 
-- [x] Switch to port 443 for frontend 
-- [x] Fix go mod pathing
-- [x] Cleaner client connection creation 
-- [x] Move Handler-Controller-Connection to libraries 
-    need to pass in store information at beginning, if provided then connection is initialized. 
-    alternatively could move out a copy and play there 
-    need to imagine what this would look like and how complex it is. Upside is that there would a common way of init-ing golang services 
-    downside is "one-size fits all". Requires better layered interface before moving it out into an external library.
-- [x] Running kubernetes-orchestrated cluster
-- [x] Wire ctx through public-api
-- [x] Tilt Setup: 
-    - [x] Convert docker-compose over
-    - [x] Be able to access web-frontend 
-    - [x] Public-api run 
-    - [x] web-frontend can hit public-api 
-    - [x] Public-api initialized api-store
-    - [x] Add sg service
-- [x] Set up grpc client for sourcegraph service
-- [x] Use squirrel querybuilder 
-- [x] API Layering abstraction
-- [x] Shared Code and Vendored Library Pattern
-- [x] Mapper
-- [x] API Table Migrations
-- [x] React-Router
-- [x] Frontend Jest Testing
-- [x] Connect DB to the Frontend
-- [x] Web-Frontend Client
-- [x] Redux State Management
-- [x] Frontend Linter
-- [x] Postgres DB
-- [x] API Service w/ Mock Data
-- [x] Frontend w/ Mock Endpoint/Data
-- [x] Initial Deployment Process
+Done:

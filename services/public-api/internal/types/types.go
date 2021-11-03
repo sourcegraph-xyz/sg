@@ -1,8 +1,13 @@
 package types
 
+type BaseType interface {
+	Version() int
+	Args() interface{} // returns available arguments from type to be used for transformations. May not even need args bc including the transformation means the needed arguments are available
+}
+
 // All string document transformations
 type StringType interface {
-	Version() int
+
 }
 
 type StringDocument struct {

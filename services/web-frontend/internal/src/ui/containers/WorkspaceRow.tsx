@@ -70,6 +70,9 @@ const mapStateToProps = (state: any) => {
   };
 };
 
+// TODO: fetchScopeContents(client) -- get Nodes, Edges,
+//
+
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   fetchSilos: (client: Client) => dispatch(fetchSilosIfNeeded(client)),
 });

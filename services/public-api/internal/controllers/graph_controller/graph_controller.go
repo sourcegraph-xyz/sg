@@ -7,6 +7,7 @@ import (
 )
 
 type GraphController struct {
+	// TODO: Change name to connection bc it's one connection in a pool?
 	query *psql.GraphPsqlQueries
 }
 
@@ -36,6 +37,10 @@ func (c *GraphController) GetScope(ctx *gin.Context, id string) (*models.Scope, 
 
 func (c *GraphController) CreateScope(ctx *gin.Context, s *models.Scope) error {
 	return c.query.CreateScope(ctx, s)
+}
+
+func (c *GraphController) GetScopes(ctx *gin.Context) ([]*models.Scope, error) {
+	return c.query.GetScopes(ctx)
 }
 
 

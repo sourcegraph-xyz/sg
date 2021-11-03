@@ -21,7 +21,8 @@ func Run(store string) {
 	v1.POST("/edge", h.CreateEdge)
 	v1.GET("/edge/:id", h.GetEdge)
 	v1.POST("/scope", h.CreateScope)
-	v1.GET("/scope/:id", h.GetScope)
+	v1.GET("/scope/:id", h.GetScope) // TODO: need to get nodes and/or edges
+	v1.GET("/scopes", h.GetScopes)
 
 	router.Run(os.Getenv("PUBLIC_API_ADDRESS")) // Public API IP:Port
 }

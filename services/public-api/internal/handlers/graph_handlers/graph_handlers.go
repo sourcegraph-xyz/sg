@@ -25,6 +25,7 @@ func (h *GraphHandlers) GetNode(ctx *gin.Context) {
 	if err != nil {
 		resp.ReturnError(ctx, 400, err)
 	} else {
+		// TODO: Do I need a schema validator?
 		resp.ReturnJSON(ctx, 200, v)
 	}
 }
@@ -32,7 +33,10 @@ func (h *GraphHandlers) GetNode(ctx *gin.Context) {
 func (h *GraphHandlers) CreateNode(ctx *gin.Context) {
 	req := &reqs.CreateNodeReq{}
 
-	// TODO: make external library for binding to struct
+	// TODO: make external library for binding to struct -- should also tie in with schema validator pattern
+	// 	mapping between schema : struct
+	//	attempts to map into and throws error if wrong
+	//	pattern can be shared
 	err := ctx.BindJSON(req)
 	if err != nil {
 		resp.ReturnError(ctx, 400, err)
@@ -93,6 +97,15 @@ func (h *GraphHandlers) CreateScope(ctx *gin.Context) {
 		resp.ReturnError(ctx, 400, err)
 	} else {
 		ctx.Status(200)
+	}
+}
+
+func (h *GraphHandlers) GetScopes(ctx *gin.Context) {
+	scopes, err := h.controller.GetScopes(ctx)
+	if err != nil {
+		resp.ReturnError(ctx, 400, err)
+	} else {
+		resp.ReturnJSON(ctx, 200, scopes)
 	}
 }
 

@@ -90,4 +90,20 @@ func (c *GraphPsqlQueries) GetScope(ctx *gin.Context, id string) (*models.Scope,
 	return v, nil
 }
 
+// TODO: Need to eventually associate these values with a faceted identity
+func (c *GraphPsqlQueries) GetScopes(ctx *gin.Context) ([]*models.Scope, error) {
+	query, args, err := c.qb.Select("*").From("scopes").ToSql()
+	if err != nil {
+		return nil, err
+	}
+
+	var v []*models.Scope
+	_, err = c.db.WithContext(ctx).Select(v, query, args...)
+	if err != nil {
+		return nil, err
+	}
+
+	return v, nil
+}
+
 

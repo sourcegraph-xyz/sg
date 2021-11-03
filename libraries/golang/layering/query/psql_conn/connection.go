@@ -13,3 +13,12 @@ type PsqlConnection struct {
 func (c *PsqlConnection) Close() {
 	c.db.Db.Close()
 }
+
+func (c *PsqlConnection) DirectDB() *gorp.DbMap {
+	return c.db
+}
+
+func (c *PsqlConnection) DirectQB() *squirrel.StatementBuilderType {
+	return c.qb
+}
+
